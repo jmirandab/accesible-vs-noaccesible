@@ -1,0 +1,157 @@
+/* Home page specific styles */
+.home-page {
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #494949;
+    line-height: 1.6;
+    padding: 2rem;
+    min-height: 100vh;
+}
+
+.home-page * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header {
+    text-align: center;
+}
+
+.title {
+    font-size: 2.5rem;
+    color: #0054AD;
+    margin-bottom: 1rem;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #494949;
+    margin-bottom: 2rem;
+}
+
+.description {
+    background-color: #f8f9fa;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+}
+
+.pages-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.page-card {
+    background-color: #f8f9fa;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #494949;
+    display: block;
+}
+
+.page-card:hover {
+    background-color: #e9ecef;
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-decoration: none;
+    color: #494949;
+}
+
+.page-card:focus {
+    outline: 2px solid #0054AD;
+    outline-offset: 2px;
+}
+
+.page-title {
+    font-size: 1.5rem;
+    color: #0054AD;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.page-description {
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.page-features {
+    list-style: none;
+    text-align: left;
+}
+
+.page-features li {
+    margin-bottom: 0.5rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.page-features li:before {
+    content: "•";
+    color: #0054AD;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+}
+
+.no-accessibility .page-features li:before {
+    content: "❌";
+}
+
+.with-accessibility .page-features li:before {
+    content: "✅";
+}
+
+.footer {
+    text-align: center;
+    padding: 2rem;
+    border-top: 1px solid #dddddd;
+    margin-top: 3rem;
+}
+
+.footer a {
+    color: #0054AD;
+}
+
+.footer-link {
+    color: #0054AD;
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .pages-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .title {
+        font-size: 2rem;
+    }
+    
+    .page-card {
+        padding: 1.5rem;
+    }
+    
+    .home-page {
+        padding: 1rem;
+    }
+}

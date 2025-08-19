@@ -68,17 +68,44 @@ const BookingForm = ({ appState }) => {
                (num2 === num1 - 1 && num3 === num2 - 1);
     };
 
+    // Add a document-level tab key handler
+    React.useEffect(() => {
+        const handleTabKey = (e) => {
+            if (e.key === 'Tab') {
+                console.log('Tab key pressed, but navigation is disabled in this example.');
+                e.preventDefault();
+            }
+        };
+        
+        // Add event listener to the document
+        document.addEventListener('keydown', handleTabKey);
+        
+        // Clean up
+        return () => {
+            document.removeEventListener('keydown', handleTabKey);
+        };
+    }, []);
+
     const handleKeyDown = (e, currentField) => {
         if (e.key === 'Enter') {
             e.preventDefault();
-            
+            // Solo validar el campo actual, no enviar el formulario
             if (currentField === 'nombre') {
-                // Move focus to password field
-                document.getElementById('nuevoPassword').focus();
+                // Validar nombre y mover el foco si es válido
+                const valid = /^[a-zA-ZáéíóúÁÉÍÓÚñÑ]{4}$/.test(formData.nombre);
+                setErrors(prev => ({ ...prev, nombre: valid ? '' : 'El nombre tiene errores, por favor corregir' }));
+                if (valid) {
+                    document.getElementById('nuevoPassword').focus();
+                }
             } else if (currentField === 'nuevoPassword') {
-                // Validate and submit form or move to next field
-                handleSubmit();
+                // Validar password
+                const valid = validatePassword(formData.nuevoPassword);
+                setErrors(prev => ({ ...prev, password: valid ? '' : 'El nuevo password tiene errores, por favor corregir' }));
             }
+        } else if (e.key === 'Tab') {
+            // Prevent tab navigation for non-accessible example
+            console.log('Tab key pressed, but navigation is disabled in this example.');
+            e.preventDefault();
         }
     };
 
@@ -108,6 +135,7 @@ const BookingForm = ({ appState }) => {
                     value={formData.nombre}
                     onChange={(e) => handleInputChange('nombre', e.target.value)}
                     onKeyDown={(e) => handleKeyDown(e, 'nombre')}
+                    tabIndex="1"
                 />
                 <span className="input-hint">Para continuar digite Enter.</span>
                 <span className="error-message" id="errorNombre">{errors.nombre || ''}</span>
@@ -122,6 +150,7 @@ const BookingForm = ({ appState }) => {
                     value={formData.nuevoPassword}
                     onChange={(e) => handleInputChange('nuevoPassword', e.target.value)}
                     onKeyDown={(e) => handleKeyDown(e, 'nuevoPassword')}
+                    tabIndex="2"
                 />
                 <span className="input-hint">Para continuar digite Enter.</span>
                 <span className="error-message" id="errorPassword">{errors.password || ''}</span>

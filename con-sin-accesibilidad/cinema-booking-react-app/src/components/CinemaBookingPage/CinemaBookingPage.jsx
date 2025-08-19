@@ -24,7 +24,7 @@ const CinemaBookingPage = () => {
 
                 {/* Sección principal */}
                 <div className={`main-content ${appState.sidebarCollapsed ? 'expanded' : ''}`}>
-                    <div className="page-title">Formulario de Registro</div>
+                    <div className="page-title">Formulario de Registrooooo</div>
                     
                     <div className="content-wrapper">
                         {/* Área de película seleccionada */}
